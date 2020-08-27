@@ -6,7 +6,7 @@ apt upgrade
 apt install hostapd bc build-essential dkms 
 
 # Download from a driver source 
-git clone https://github.com/cilynx/rtl88x2bu
+https://github.com/Redjuice01/Driver-Injection/archive/drion.tar.gz
 cd rtl88x2bu/
 
 # Configure for RasPi
