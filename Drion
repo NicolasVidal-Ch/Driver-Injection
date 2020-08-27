@@ -1,0 +1,19 @@
+//Checking update 
+sudo apt update
+sudo apt upgrade
+
+//Install Prereqs
+sudo apt install git dnsmasq hostapd bc build-essential dkms
+
+//Reboot
+
+//Download from driver source 
+git clone https://github.com/cilynx/rtl88x2bu
+cd rtl88x2bu/
+
+//Compile USB-Adapter Driver for each debian
+
+
+//Install USB-Adapter Driver on each debian
+
+
