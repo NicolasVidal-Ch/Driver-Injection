@@ -1,19 +1,25 @@
-//Checking update 
-sudo apt update
-sudo apt upgrade
+#Cheking Update
+apt update
+apt upgrade
 
-//Install Prereqs
-sudo apt install git dnsmasq hostapd bc build-essential dkms
+#Install prereqs
+apt install hostapd bc build-essential dkms dnsmasq
 
-//Reboot
+#Reboot
+reboot
 
-//Download from driver source 
+#Download from a driver source 
 git clone https://github.com/cilynx/rtl88x2bu
 cd rtl88x2bu/
 
-//Compile USB-Adapter Driver for each debian
+#Configure for RasPi
+sed -i 's/I386_PC = y/I386_PC = n/' Makefile
+sed -i 's/ARM_RPI = n/ARM_RPI = y/' Makefile
 
 
-//Install USB-Adapter Driver on each debian
+#Compile USB-Adapter Driver for each debian
+
+
+#Install USB-Adapter Driver on each debian
 
 
