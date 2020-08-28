@@ -1,5 +1,5 @@
 # Install prereqs
-apt install -y hostapd bc build-essential dkms rsync git
+apt install -y hostapd bc build-essential dkms rsync git raspberrypi-kernel-headers
 
 # Download from a driver source 
 git clone https://github.com/cilynx/rtl88x2bu
