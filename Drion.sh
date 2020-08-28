@@ -3,7 +3,7 @@ apt install -y hostapd bc build-essential dkms
 
 # Download from a driver source 
 git clone https://github.com/cilynx/rtl88x2bu
-cd rtl88x2bu/
+cd rtl88x2bu
 
 # Configure for RasPi
 sed -i 's/I386_PC = y/I386_PC = n/' Makefile
