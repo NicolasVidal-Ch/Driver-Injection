@@ -1,12 +1,9 @@
-# Cheking Update
-apt update
-apt upgrade
-
 # Install prereqs
-apt install hostapd bc build-essential dkms 
+apt install -y hostapd bc build-essential dkms 
 
 # Download from a driver source 
-cd Driver-injection-drion/
+git clone https://github.com/cilynx/rtl88x2bu
+cd rtl88x2bu/
 
 # Configure for RasPi
 sed -i 's/I386_PC = y/I386_PC = n/' Makefile
