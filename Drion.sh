@@ -15,3 +15,30 @@ rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
 dkms add -m rtl88x2bu -v ${VER}
 dkms build -m rtl88x2bu -v ${VER}
 dkms install -m rtl88x2bu -v ${VER}
+
+# Configure hostapd
+sudo tee /etc/hostapd/hostapd.conf <<EOF
+interface=wlan1
+driver=nl80211
+ssid=tssr
+hw_mode=g
+channel=7
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=CorrectHorseBatteryStaple
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+EOF
+
+sudo sed -i 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+
+# Enable hostapd
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+
+# Reboot to pick up the config changes
+sudo reboot
