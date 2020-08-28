@@ -6,8 +6,7 @@ apt upgrade
 apt install hostapd bc build-essential dkms 
 
 # Download from a driver source 
-https://github.com/Redjuice01/Driver-Injection/archive/drion.tar.gz
-cd rtl88x2bu/
+cd Driver-injection-drion/
 
 # Configure for RasPi
 sed -i 's/I386_PC = y/I386_PC = n/' Makefile
