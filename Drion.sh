@@ -1,5 +1,5 @@
 # Install prereqs
-apt install -y hostapd bc build-essential dkms rsync git raspberrypi-kernel-headers
+apt install -y bc build-essential dkms rsync raspberrypi-kernel-headers
 
 # Download from a driver source 
 git clone https://github.com/cilynx/rtl88x2bu
@@ -17,30 +17,31 @@ dkms build -m rtl88x2bu -v ${VER}
 dkms install -m rtl88x2bu -v ${VER}
 echo 88x2bu >> /etc/modules
 
+#Création d'une varible pour récupérer l'ID de la carte WI-FI:
+ID=$(ip a | grep '4:' |cut -d ' ' -f2 | cut -d ':' -f1)
 
-# Configure hostapd
-sudo tee /etc/hostapd/hostapd.conf <<EOF
-interface=wlan1
-driver=nl80211
-ssid=tssr
-hw_mode=g
-channel=7
-wmm_enabled=0
-macaddr_acl=0
-auth_algs=1
-ignore_broadcast_ssid=0
-wpa=2
-wpa_passphrase=CorrectHorseBatteryStaple
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP
-rsn_pairwise=CCMP
-EOF
+#Create a variable for change IP:
+COUNTER=1
+NETWORK=10.1.6
+while [ $COUNTER -lt 254 ]
+do
+   if ping -c1 -w3 $NETWORK.$COUNTER >/dev/null 2>&1
+   then
+   COUNTER=$(( $COUNTER + 1 ))
+   else
+   IP=$NETWORK.$COUNTER
+   COUNTER=254
+   fi
+done
 
-sudo sed -i 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+#Change IP address with a variable:
+echo auto $ID >> /etc/network/interfaces
+echo iface $ID inet static >> /etc/network/interfaces
+echo  wpa-ssid TSSRARIEN >> /etc/network/interfaces
+echo  wpa-psk P455Support >> /etc/network/interfaces
+echo	address $IP >> /etc/network/interfaces
+echo	netmask 255.255.255.0 >> /etc/network/interfaces
+echo	gateway 10.1.6.1 >> /etc/network/interfaces
 
-# Enable hostapd
-sudo systemctl unmask hostapd
-sudo systemctl enable hostapd
-
-# Reboot to pick up the config changes
-sudo reboot
+#restart netwoking.service:
+systemctl restart networking.service
