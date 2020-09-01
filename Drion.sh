@@ -1,5 +1,5 @@
 # Install prereqs
-apt install -y bc build-essential dkms rsync raspberrypi-kernel-headers
+#apt install -y bc build-essential dkms rsync raspberrypi-kernel-headers
 
 # Download from a driver source 
 git clone https://github.com/cilynx/rtl88x2bu
