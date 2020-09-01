@@ -34,12 +34,15 @@ do
    fi
 done
 
+#Création d'une variable pour l'ancienne adresse IP
+IPBASE=$(ip a | grep '10.1.6' | cut -d' ' -f6 | cut -d'/' -f1)
+
 #Change IP address with a variable:
 echo auto lo > /etc/network/interfaces
 echo iface lo inet loopback >> /etc/network/interfaces
 echo auto eth0 >> /etc/network/interfaces
 echo iface eth0 inet static >> /etc/network/interfaces
-echo address 10.1.6.3 >> /etc/network/interfaces
+echo address $IPBASE >> /etc/network/interfaces
 echo netmask 255.255.255.0 >> /etc/network/interfaces
 echo gateway 10.1.6.1 >> /etc/network/interfaces
 echo auto $ID >> /etc/network/interfaces
