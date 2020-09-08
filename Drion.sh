@@ -15,7 +15,7 @@ rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
 dkms add -m rtl88x2bu -v ${VER}
 dkms build -m rtl88x2bu -v ${VER}
 dkms install -m rtl88x2bu -v ${VER}
-echo rtl88x2bu >> /etc/modules
+echo 88x2bu >> /etc/modules
 
 #Création d'une varible pour récupérer l'ID de la carte WI-FI:
 #ID=$(ip a | grep '4:' | cut -d ' ' -f2 | cut -d ':' -f1)
