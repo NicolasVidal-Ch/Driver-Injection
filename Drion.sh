@@ -39,8 +39,8 @@ echo country=fr > /etc/wpa_supplicant/wpa_supplicant.conf
 echo ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo update_config=1 >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo network={ >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo        ssid="TSSRARIEN" >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo        psk="P455Support" >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo        ssid=""TSSRARIEN"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo        psk=""P455Support"" >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo } >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 #Change IP address with a variable:
@@ -63,5 +63,8 @@ echo RPI.$IPWLAN > /etc/hostname
 echo 127.0.0.1       localhost > /etc/hosts
 echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 
+#unblock wifi interface
+rfkill unblock 0
+rfkill unblock 1
 
 reboot
