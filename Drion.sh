@@ -57,11 +57,10 @@ echo netmask 255.255.255.0 >> /etc/network/interfaces
 echo gateway 10.1.6.1 >> /etc/network/interfaces
 echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
 
-> /etc/hostname
-echo RPI.$IPWLAN >> /etc/hostname
+echo RPI.$IPWLAN > /etc/hostname
 
-> /etc/hosts
-echo 127.0.0.1       localhost >> /etc/hosts
+
+echo 127.0.0.1       localhost > /etc/hosts
 echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 
 
