@@ -39,8 +39,8 @@ echo country=fr > /etc/wpa_supplicant/wpa_supplicant.conf
 echo ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo update_config=1 >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo network={ >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo        ssid=""TSSRARIEN"" >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo        psk=""P455Support"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo -e        ssid="TSSRARIEN" >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo -e       psk="P455Support" >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo } >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 #Change IP address with a variable:
