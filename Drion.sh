@@ -59,9 +59,13 @@ echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
 
 echo RPI.$IPWLAN > /etc/hostname
 
-
 echo 127.0.0.1       localhost > /etc/hosts
 echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
+
+#envoi de l'adresse IP sur fichier ipraspberry
+IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+echo $IPRASP >> /mnt/servrpi/export/exportrpi/ipraspberry
+echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/ipraspberry
 
 #unblock wifi interface
 rfkill unblock 0
