@@ -20,6 +20,9 @@ echo 88x2bu >> /etc/modules
 #Création d'une varible pour récupérer l'ID de la carte WI-FI:
 #ID=$(ip a | grep '4:' | cut -d ' ' -f2 | cut -d ':' -f1)
 
+#Old IP
+IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+
 #Création d'une variable pour l'IP Wlan1
 COUNTER=2
 NETWORK=10.1.6
@@ -63,9 +66,8 @@ echo 127.0.0.1       localhost > /etc/hosts
 echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 
 #envoi de l'adresse IP sur fichier ipraspberry
-IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
-echo $IPRASP >> /mnt/servrpi/export/exportrpi/ipraspberry
-echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/ipraspberry
+sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
+echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
 
 #unblock wifi interface
 rfkill unblock 0
