@@ -20,6 +20,10 @@ echo 88x2bu >> /etc/modules
 #Old IP
 IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
 
+#unblock wifi interface
+rfkill unblock 0
+rfkill unblock 1
+
 #Création d'une variable pour l'IP Wlan1
 COUNTER=2
 NETWORK=10.1.6
@@ -66,8 +70,6 @@ echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
 echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
 
-#unblock wifi interface
-rfkill unblock 0
-rfkill unblock 1
+
 
 reboot
