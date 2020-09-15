@@ -74,4 +74,5 @@ chmod +x /etc/network-net/network.sh
 #Create a cron for launch the network script:
 @reboot root sh /etc/network-net/network.sh
 
+#reboot the pi
 reboot
