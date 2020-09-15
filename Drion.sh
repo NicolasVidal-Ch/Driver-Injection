@@ -1,3 +1,6 @@
+#Old IP:
+IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+
 #WPA_supplicant:
 apt install wpasupplicant
 
@@ -16,9 +19,6 @@ dkms add -m rtl88x2bu -v ${VER}
 dkms build -m rtl88x2bu -v ${VER}
 dkms install -m rtl88x2bu -v ${VER}
 echo 88x2bu >> /etc/modules
-
-#Old IP:
-IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
 
 #Variable creation for Wlan1 IP:
 COUNTER=2
