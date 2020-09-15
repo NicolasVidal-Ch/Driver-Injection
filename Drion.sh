@@ -72,7 +72,7 @@ tar vxf /etc/net.tar.gz -C /etc
 chmod +x /etc/network-net/network.sh
 
 #Create a cron for launch the network script:
-@reboot root sh /etc/network-net/network.sh >> /etc/crontab
+echo @reboot root sh /etc/network-net/network.sh >> /etc/crontab
 
 #Reboot the pi:
 reboot
