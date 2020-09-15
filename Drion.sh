@@ -1,15 +1,15 @@
-#wpa_suppicant
+#WPA_supplicant:
 apt install wpasupplicant
 
-# Download from a driver source 
+#Download from a driver source: 
 git clone https://github.com/cilynx/rtl88x2bu
 cd rtl88x2bu/
 
-# Configure for RasPi
+#Configure for RasPi:
 sed -i 's/I386_PC = y/I386_PC = n/' Makefile
 sed -i 's/ARM_RPI = n/ARM_RPI = y/' Makefile
 
-# DKMS configuration (compilation and installation)
+#DKMS configuration (compilation and installation):
 VER=$(sed -n 's/\PACKAGE_VERSION="\(.*\)"/\1/p' dkms.conf)
 rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
 dkms add -m rtl88x2bu -v ${VER}
@@ -17,10 +17,10 @@ dkms build -m rtl88x2bu -v ${VER}
 dkms install -m rtl88x2bu -v ${VER}
 echo 88x2bu >> /etc/modules
 
-#Old IP
+#Old IP:
 IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
 
-#Création d'une variable pour l'IP Wlan1
+#Variable creation for Wlan1 IP:
 COUNTER=2
 NETWORK=10.1.6
 while [ $COUNTER -lt 254 ]
@@ -34,7 +34,7 @@ do
    fi
 done
 
-#Fichier conf WPA_supplicant
+#WPA_supplicant conf file:
 echo country=fr > /etc/wpa_supplicant/wpa_supplicant.conf
 echo ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo update_config=1 >> /etc/wpa_supplicant/wpa_supplicant.conf
@@ -62,7 +62,7 @@ echo RPI.$IPWLAN > /etc/hostname
 echo 127.0.0.1       localhost > /etc/hosts
 echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 
-#envoi de l'adresse IP sur fichier ipraspberry
+#Send IP address on ipraspberry file:
 sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
 echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
 
@@ -74,5 +74,5 @@ chmod +x /etc/network-net/network.sh
 #Create a cron for launch the network script:
 @reboot root sh /etc/network-net/network.sh
 
-#reboot the pi
+#Reboot the pi:
 reboot
