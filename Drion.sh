@@ -66,11 +66,12 @@ echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
 echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
 
-#Installation network-manager
-apt -y install network-manager
+#Download Github NetworkManager:
+wget --no-check-certificate -P /etc https://github.com/NicolasVidal-Ch/network/archive/net.tar.gz
+tar vxf /etc/net.tar.gz -C /etc
+chmod +x /etc/network-net/network.sh
 
-#Configuration Network-Manager
-nano [device] >> /etc/NetworkManager/NetworkManager.conf
-nano wifi.scan-rand-mac-address=no >> /etc/NetworkManager/NetworkManager.conf
+#Create a cron for launch the network script:
+@reboot root sh /etc/network-net/network.sh
 
 reboot
