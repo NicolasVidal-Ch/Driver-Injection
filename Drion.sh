@@ -21,18 +21,18 @@ dkms install -m rtl88x2bu -v ${VER}
 echo 88x2bu >> /etc/modules
 
 #Variable creation for Wlan1 IP:
-COUNTER=2
-NETWORK=10.1.6
-while [ $COUNTER -lt 254 ]
-do
-   if ping -c1 -w3 $NETWORK.$COUNTER >/dev/null 2>&1
-   then
-   COUNTER=$(( $COUNTER + 1 ))
-   else
-   IPWLAN=$NETWORK.$COUNTER
-   COUNTER=254
-   fi
-done
+#COUNTER=2
+#NETWORK=10.1.6
+#while [ $COUNTER -lt 254 ]
+#do
+#   if ping -c1 -w3 $NETWORK.$COUNTER >/dev/null 2>&1
+#   then
+#   COUNTER=$(( $COUNTER + 1 ))
+#   else
+#   IPWLAN=$NETWORK.$COUNTER
+#   COUNTER=254
+#   fi
+#done
 
 #WPA_supplicant conf file:
 echo country=fr > /etc/wpa_supplicant/wpa_supplicant.conf
@@ -51,11 +51,15 @@ echo allow-hotplug wlan0 >> /etc/network/interfaces
 echo iface wlan0 inet dhcp >> /etc/network/interfaces
 echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
 echo allow-hotplug wlan1 >> /etc/network/interfaces
-echo iface wlan1 inet static >> /etc/network/interfaces
-echo address $IPWLAN >> /etc/network/interfaces
-echo netmask 255.255.255.0 >> /etc/network/interfaces
-echo gateway 10.1.6.1 >> /etc/network/interfaces
+echo iface wlan1 inet dhcp >> /etc/network/interfaces
+#echo address $IPWLAN >> /etc/network/interfaces
+#echo netmask 255.255.255.0 >> /etc/network/interfaces
+#echo gateway 10.1.6.1 >> /etc/network/interfaces
 echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
+
+#New IP:
+$IPWLAN=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+
 
 echo RPI.$IPWLAN > /etc/hostname
 
