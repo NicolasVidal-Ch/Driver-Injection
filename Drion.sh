@@ -1,6 +1,6 @@
 #Old IP:
-#IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
-
+IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+echo $IPRASP >> /etc/oldiprasp
 #WPA_supplicant:
 apt install wpasupplicant
 
