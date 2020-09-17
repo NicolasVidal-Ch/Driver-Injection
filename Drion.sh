@@ -76,7 +76,7 @@ tar vxf /etc/net.tar.gz -C /etc
 chmod +x /etc/network-net/network.sh
 
 #Create a cron for launch the network script:
-echo @reboot root sh /etc/network-net/network.sh >> /etc/crontab
+#echo @reboot root sh /etc/network-net/network.sh >> /etc/crontab
 
 #Install Network-Manager:
 apt -y install network-manager
