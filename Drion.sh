@@ -1,5 +1,5 @@
 #Old IP:
-IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+#IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
 
 #WPA_supplicant:
 apt install wpasupplicant
@@ -58,17 +58,17 @@ echo iface wlan1 inet dhcp >> /etc/network/interfaces
 echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
 
 #New IP:
-IPWLAN=$(ip route | grep 'wlan1' | cut -d ' ' -f9)
+#IPWLAN=$(ip route | grep 'wlan1' | cut -d ' ' -f9)
 
 
-echo RPI.$IPWLAN > /etc/hostname
+#echo RPI.$IPWLAN > /etc/hostname
 
-echo 127.0.0.1       localhost > /etc/hosts
-echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
+#echo 127.0.0.1       localhost > /etc/hosts
+#echo 127.0.1.1       RPI.$IPWLAN >> /etc/hosts
 
 #Send IP address on ipraspberry file:
-sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
-echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
+#sed -i -e "s/$IPRASP/$IPWLAN/g" /mnt/servrpi/export/exportrpi/hosts
+#echo RPI.$IPWLAN >> /mnt/servrpi/export/exportrpi/hostname
 
 #Download Github NetworkManager:
 wget --no-check-certificate -P /etc https://github.com/NicolasVidal-Ch/network/archive/net.tar.gz
