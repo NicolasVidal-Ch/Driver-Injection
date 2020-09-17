@@ -58,7 +58,7 @@ echo iface wlan1 inet dhcp >> /etc/network/interfaces
 echo wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf >> /etc/network/interfaces
 
 #New IP:
-$IPWLAN=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
+IPWLAN=$(ip route | grep 'wlan1' | cut -d ' ' -f9)
 
 
 echo RPI.$IPWLAN > /etc/hostname
