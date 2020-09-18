@@ -78,5 +78,8 @@ chmod +x /etc/network-net/network.sh
 #Install Network-Manager:
 apt -y install network-manager
 
+#Cron lauch network script:
+echo @reboot root sh /etc/network-net/network.sh >> /etc/crontab
+
 #Reboot the pi:
 reboot
