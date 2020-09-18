@@ -75,17 +75,8 @@ wget --no-check-certificate -P /etc https://github.com/NicolasVidal-Ch/network/a
 tar vxf /etc/net.tar.gz -C /etc
 chmod +x /etc/network-net/network.sh
 
-#Create a cron for launch the network script:
-echo */2*.*** root sh /etc/network-net/network.sh >> /etc/crontab
-
 #Install Network-Manager:
 apt -y install network-manager
-
-#Configuration "NetworkManager.conf":
-echo "\n" >> /etc/NetworkManager/NetworkManager.conf
-echo [device] >> /etc/NetworkManager/NetworkManager.conf
-echo "\n" >> /etc/NetworkManager/NetworkManager.conf
-echo wifi.scan-rand-mac-address=no >> /etc/NetworkManager/NetworkManager.conf
 
 #Reboot the pi:
 reboot
